@@ -14,19 +14,14 @@ public class AlfaBankTests {
         open("http://alfabank.ru");
 
         // Нажать на ссылку "Вклады"
-        $(byText("Вклады")).doubleClick();
+        $(byText("Вклады")).click();
     }
 
     //Занятие №3, Задание №2
-
     @Test
-    void archiveDepositsShouldBeThree() {
-
-        //  Нажать на ссылку "Депозиты"
-        $x("//*[@id=\"product_page_list\"]/div[3]/div[2]/div[1]/div/div[2]/ul/li[2]").click();
-
-        // Нажать на ссылку "Архивные депозиты"
-        $(byText("Архивные депозиты")).click();
+    void archiveDepositsSizeTest() {
+        $(byTitle("Депозиты")).click(); //  Нажать на ссылку "Депозиты"
+        $(byText("Архивные депозиты")).click(); // Нажать на ссылку "Архивные депозиты"
 
         // Проверить, что количество архивных депозитов равно трём
         $$(".product-cell__cell-back").shouldHave(size(3));
@@ -36,29 +31,33 @@ public class AlfaBankTests {
 
     // 01. Поиск элемента с использованием метода sibling()
     @Test
-    void siblingExample() {
-        $x("//*[@id=\"product_page_list\"]/div[3]/div[2]/div[1]/div/div[2]/ul/li[1]").sibling(4).click();
+    void siblingExampleTest() {
+        $(byText("Накопительные счета")).parent().sibling(4).click();
+        
         $(".col-xs-offset-2").shouldHave(text("Страхование вкладов"));
     }
 
     // 02. Поиск элемента с использованием метода preceding()
     @Test
-    void precedingExample() {
+    void precedingExampleTest() {
         $(byAttribute("href", "/make-money/44-fz/")).parent().preceding(0).click();
+        
         $(".col-xs-offset-2").shouldHave(text("Страхование вкладов"));
     }
 
     // 03. Поиск элемента с использованием метода parent()
     @Test
-    void parentExample() {
-        $x("//*[@id=\"product_page_list\"]/div[3]/div[2]/div[1]/div/div[2]/ul/li[6]").parent().click();
+    void parentExampleTest() {
+        $x("//*[@id=\"product_page_list\"]/div[3]/div[2]/div[1]/div/div[2]/ul/li[6]").parent().click(); // todo fix locator
+        
         $(".col-xs-offset-2").shouldHave(text("Страхование вкладов"));
     }
 
     // 04. Поиск элемента с использованием метода closest()
     @Test
-    void closestExample() {
-        $x("//*[@id='product_page_list']/div[3]/div[2]/div[1]/div/div[2]/ul/li[6]/a").closest("li").click();
+    void closestExampleTest() {
+        $x("//*[@id='product_page_list']/div[3]/div[2]/div[1]/div/div[2]/ul/li[6]/a").closest("li").click();  // todo fix locator
+        
         $(".col-xs-offset-2").shouldHave(text("Страхование вкладов"));
     }
 }
