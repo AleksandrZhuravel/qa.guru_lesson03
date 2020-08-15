@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
-public class AlfaBankTester {
+public class AlfaBankTests {
 
     @BeforeEach
     public void openPage() {
